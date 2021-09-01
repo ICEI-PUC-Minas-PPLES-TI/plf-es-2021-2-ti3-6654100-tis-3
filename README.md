@@ -1,4 +1,4 @@
-# Nome do projeto
+# CMF - Controle e Monitoramento Financeiro
 
 Escreva um ou dois  parágrafo resumindo o objetivo do seu projeto.
 
@@ -6,13 +6,12 @@ Escreva um ou dois  parágrafo resumindo o objetivo do seu projeto.
 
 * Nome completo do aluno 1
 * Nome completo do aluno 2
-* Nome completo do aluno 3
+* Rodolfo Rocha Rodrigues
 * Nome completo do aluno 4
 
 ## Professores responsáveis
 
-* Nome completo do professor 1
-* Nome completo do professor 2
+* Eveline Alonso Veloso
 
 ## Instruções de utilização
 
