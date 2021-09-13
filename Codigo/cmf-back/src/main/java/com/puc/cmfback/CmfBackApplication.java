@@ -9,5 +9,4 @@ public class CmfBackApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CmfBackApplication.class, args);
 	}
-
 }

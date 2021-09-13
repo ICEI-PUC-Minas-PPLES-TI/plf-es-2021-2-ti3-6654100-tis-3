@@ -46,7 +46,7 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping(value = "/buscar-todos")
     public ResponseEntity<List<UsuarioDTO>> buscarTodosOsUsuarios() {
         var resposta = usuarioService.buscarTodosOsUsuarios();
         return ResponseEntity.ok().body(resposta);
