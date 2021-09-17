@@ -1,0 +1,7 @@
+{
+  "name": "cmf-front",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

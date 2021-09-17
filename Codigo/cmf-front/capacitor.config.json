@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "cmf-front",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
