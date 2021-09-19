@@ -4,14 +4,16 @@ Escreva um ou dois  parágrafo resumindo o objetivo do seu projeto.
 
 ## Alunos integrantes da equipe
 
+* Anna Laura Reis Dornela Ribeiro
+* André Cota Guimarães
 * Guilherme Roberto Ferreira Santos
-* Nome completo do aluno 2
-* 
-* Nome completo do aluno 4
+* João Pedro Mayrink de Jesus
+* Vinicius Levi Viana de Oliveira
 
 ## Professores responsáveis
 
 * Eveline Alonso Veloso
+* Juliana Amaral Baroni De Carvalho
 
 ## Instruções de utilização
 
