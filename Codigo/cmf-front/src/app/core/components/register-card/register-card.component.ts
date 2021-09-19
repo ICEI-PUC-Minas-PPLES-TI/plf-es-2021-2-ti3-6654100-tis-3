@@ -9,6 +9,8 @@ export class RegisterCardComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log('i\'m heeeeere');
+  }
 
 }
