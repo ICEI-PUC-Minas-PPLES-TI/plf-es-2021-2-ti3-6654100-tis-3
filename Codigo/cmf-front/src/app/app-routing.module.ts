@@ -10,9 +10,13 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () =>
-      import('./core/pages/external-area/external-area.module').then(
-        (m) => m.ExternalAreaModule
+      import('./pages/external-area/external-area.module').then(
+        (m) => m.ExternalAreaPageModule
       ),
+  },
+  {
+    path: 'external-area',
+    loadChildren: () => import('./pages/external-area/external-area.module').then( m => m.ExternalAreaPageModule)
   },
 ];
 @NgModule({

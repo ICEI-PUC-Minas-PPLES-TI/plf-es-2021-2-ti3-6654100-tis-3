@@ -6,12 +6,12 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ExternalAreaModule } from './core/pages/external-area/external-area.module';
+import { ExternalAreaPageModule } from './pages/external-area/external-area.module';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule, AppRoutingModule, ExternalAreaModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ExternalAreaPageModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
