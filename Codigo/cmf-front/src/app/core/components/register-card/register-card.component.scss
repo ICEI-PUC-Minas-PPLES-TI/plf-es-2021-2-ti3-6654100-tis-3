@@ -1,5 +1,6 @@
 .register-card {
-  // background-color: aqua;
+  
+  height: 100%;
   .form {
     display: flex;
     justify-content: center;
@@ -7,12 +8,35 @@
 
     .ipt-field {
       display: flex;
-      flex-direction: column;
-      margin: 16px 8px;
+      justify-content: space-between !important;
+
+      label {
+        font-size: 16px;
+        margin-right: 8px;
+      }
+
       input {
-        width: 50%;
-        padding: 8px;
-        border-radius: 4px;
+        width: 75%;
+        padding: 12px;
+        margin-left: auto;
+        border-radius: 8px;
+        
+        border: 1px solid var(--ion-color-dark-shade);
+        
+        &:focus {
+          border: 1px solid var(dark);
+        }
+      }
+    }
+
+    .btn-controls {
+      display: flex;
+      justify-content: space-between;
+      padding: 16px;
+
+      .btn-form {
+        width: 40%;
+        height: 40px;
       }
     }
   }

@@ -1,60 +1,61 @@
 <ion-card>
-  <ion-grid class="register-card">
-    <ion-row size="12" class="form">
-      <ion-col size="8">
-        <!-- <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-          <ion-item>
-            <ion-label position="floating">E-Mail <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required formControlName="email" type="text"></ion-input>
-          </ion-item>
-          <ion-item *ngIf="registerForm.email.invalid && registerForm.email.touched" lines="none">
-            <ion-text color="danger" class="form-error">
-              Please enter a valid email address.
-            </ion-text>
-          </ion-item>
-
-          <ion-item>
-            <ion-label position="floating">Senha <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required formControlName="password" type="password"></ion-input>
-          </ion-item>
-          <ion-item *ngIf="registerForm.password.invalid && registerForm.password.touched" lines="none">
-            <ion-text color="danger" class="form-error">
-              Please enter a valid password.
-            </ion-text>
-          </ion-item>
-          <ion-button block color="primary" type="submit" [disabled]="registerForm.invalid">
-            Cadastrar
-          </ion-button>
-        </form> -->
-        <form action="#" method="post">
-          <ion-row class="ipt-field">
-            <label for="ipt-nome">Nome</label>
-            <input type="text" name="nome" id="ipt-nome" (value)="newUser.name" />
-          </ion-row>
-          <ion-row class="ipt-field">
-            <label for="ipt-funcao">Função</label>
-            <input type="text" name="funcao" id="ipt-funcao" (value)="newUser.role" />
-          </ion-row>
-          <ion-row class="ipt-field">
-            <label for="ipt-email">Email</label>
-            <input type="text" name="email" id="ipt-email" (value)="newUser.email" />
-          </ion-row>
-          <ion-row class="ipt-field">
-            <label for="ipt-senha">Senha</label>
-            <input type="password" name="senha" id="ipt-senha" (value)="newUser.password" />
-          </ion-row>
-          <ion-row class="ipt-field">
-            <label for="ipt-confirmar-senha">Confirmar senha</label>
-            <input
-              type="password"
-              name="confirmar-senha"
-              id="ipt-confirmar-senha"
-            />
-          </ion-row>
-          <ion-button color="warning">Cancelar</ion-button>
-          <ion-button color="success" (click)="onSubmit()">Cadastrar</ion-button>
-        </form>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-card-title>Cadastro</ion-card-title>
+  <ion-card-content class="register-card">
+    <ion-grid>
+      <ion-row size="12" class="form">
+        <ion-col sizeXs="10" sizeSm="8" sizeMd="6">
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <ion-item class="ipt-field">
+              <label for="ipt-nome">Nome <ion-text color="danger">*</ion-text></label>
+              <input required type="text" name="nome" (value)="(newUser.name)" />
+            </ion-item>
+  
+            <ion-item class="ipt-field">
+              <label for="ipt-funcao">Função <ion-text color="danger">*</ion-text></label>
+              <input required type="text" name="funcao" (value)="(newUser.role)" />
+            </ion-item>
+  
+            <ion-item class="ipt-field">
+              <label>E-Mail <ion-text color="danger">*</ion-text></label>
+              <input required formControlName="email" type="text">
+            </ion-item>
+            <ion-item *ngIf="registerForm.get('email').invalid && registerForm.get('email').touched" lines="none">
+              <ion-text color="danger" class="form-error">
+                Por favor insira um endereço de email válido.
+              </ion-text>
+            </ion-item>
+  
+            <ion-item class="ipt-field">
+              <label>Senha <ion-text color="danger">*</ion-text></label>
+              <input required formControlName="password" type="password">
+            </ion-item>
+            <ion-item *ngIf="registerForm.get('password').invalid && registerForm.get('password').touched" lines="none">
+              <ion-text color="danger" class="form-error">
+                Por favor insira uma senha válida.
+              </ion-text>
+            </ion-item>
+  
+            <ion-item class="ipt-field">
+              <label for="ipt-confirmar-senha">Confirmar senha <ion-text color="danger">*</ion-text></label>
+              <input type="password" formControlName="confirmPassword" name="confirmar-senha" />
+            </ion-item>
+            <ion-item *ngIf="registerForm.get('confirmPassword').invalid && registerForm.get('confirmPassword').touched" lines="none">
+              <ion-text color="danger" class="form-error">
+                As senhas não coincidem.
+              </ion-text>
+            </ion-item>
+  
+            <div class="btn-controls">
+              <ion-button class="btn-form" color="light" routerLink="/">Cancelar</ion-button>
+              <ion-button class="btn-form" block color="primary" type="submit" [disabled]="registerForm.invalid">
+                Cadastrar
+              </ion-button>
+            </div>
+          </form>
+          <!-- <form action="#" method="post">
+          </form> -->
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
 </ion-card>
