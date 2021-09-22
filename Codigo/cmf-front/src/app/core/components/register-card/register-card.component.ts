@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoadingController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
 import { DEFAULT_USER, User } from 'src/app/types/User';
 
@@ -12,6 +13,12 @@ export class RegisterCardComponent implements OnInit {
 
   registerForm: FormGroup = new FormGroup(
     {
+      name: new FormControl(null, [
+        Validators.required,
+      ]),
+      role: new FormControl(null, [
+        Validators.required,
+      ]),
       email: new FormControl(null, [
         Validators.required,
         this.checkEmail,
@@ -31,22 +38,41 @@ export class RegisterCardComponent implements OnInit {
   newUser: User = DEFAULT_USER;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private loadingController: LoadingController,
   ) { }
 
   ngOnInit() {
     console.log('to aquiiiii register-card');
   }
 
-  onSubmit() {
+  async onSubmit() {
     console.log('submit pressed');
     const email: string = this.registerForm.get('email').value;
     const password: string = this.registerForm.get('password').value;
     console.log('🚀 -> RegisterCardComponent -> email', email);
     console.log('🚀 -> RegisterCardComponent -> password', password);
-    window.alert(`sending new user to register endpoint\nemail=${email}\npassword=${password}`);
 
-    this.userService.registerUser(this.newUser);
+    const loading = await this.loadingController.create({
+      message: 'Cadastrando usuário',
+    });
+
+    loading.present();
+
+    try {
+      this.newUser = {
+        name: this.registerForm.get('name').value,
+        email: this.registerForm.get('email').value,
+        password: this.registerForm.get('password').value,
+        role: this.registerForm.get('role').value,
+      };
+
+      await this.userService.createUser(this.newUser);
+      loading.dismiss();
+    } catch (error) {
+      loading.dismiss();
+      throw error;
+    }
   }
 
   checkEmail(control: FormControl) {

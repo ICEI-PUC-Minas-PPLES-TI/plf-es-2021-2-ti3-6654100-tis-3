@@ -1,5 +1,5 @@
 <ion-card>
-  <ion-card-title>Cadastro</ion-card-title>
+  <ion-card-title class="register-title">Cadastro</ion-card-title>
   <ion-card-content class="register-card">
     <ion-grid>
       <ion-row size="12" class="form">
@@ -7,12 +7,12 @@
           <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <ion-item class="ipt-field">
               <label for="ipt-nome">Nome <ion-text color="danger">*</ion-text></label>
-              <input required type="text" name="nome" (value)="(newUser.name)" />
+              <input required formControlName="name" type="text" name="nome" (value)="(newUser.name)" />
             </ion-item>
   
             <ion-item class="ipt-field">
               <label for="ipt-funcao">Função <ion-text color="danger">*</ion-text></label>
-              <input required type="text" name="funcao" (value)="(newUser.role)" />
+              <input required formControlName="role" type="text" name="funcao" (value)="(newUser.role)" />
             </ion-item>
   
             <ion-item class="ipt-field">
