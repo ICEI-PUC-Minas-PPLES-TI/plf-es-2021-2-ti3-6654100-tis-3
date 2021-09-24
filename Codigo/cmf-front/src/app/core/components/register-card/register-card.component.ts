@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
+import { toastController } from '@ionic/core';
 import { UserService } from 'src/app/services/user.service';
 import { DEFAULT_USER, User } from 'src/app/types/User';
+import { checkConfirmPassword, checkEmail } from '../../shared/custom-validators/custom-validators-sign-up-form';
 
 @Component({
   selector: 'app-register-card',
@@ -21,7 +23,7 @@ export class RegisterCardComponent implements OnInit {
       ]),
       email: new FormControl(null, [
         Validators.required,
-        this.checkEmail,
+        checkEmail,
       ]),
       password: new FormControl(null, [
         Validators.required,
@@ -30,28 +32,30 @@ export class RegisterCardComponent implements OnInit {
       confirmPassword: new FormControl(null, [
         Validators.required,
         Validators.minLength(6),
-        // this.checkConfirmPassword,
       ])
-    }
+    }, { validators: [checkConfirmPassword] }
   );
 
   newUser: User = DEFAULT_USER;
+  isMobile: boolean;
 
   constructor(
     private userService: UserService,
     private loadingController: LoadingController,
+    private alertController: AlertController,
   ) { }
 
+  @HostListener('window:resize')
+  onResize() {
+    this.isMobile = window.innerWidth < 768;
+  }
+
   ngOnInit() {
-    console.log('to aquiiiii register-card');
+    this.isMobile = window.innerWidth < 767 ? true : false;
   }
 
   async onSubmit() {
-    console.log('submit pressed');
-    const email: string = this.registerForm.get('email').value;
-    const password: string = this.registerForm.get('password').value;
-    console.log('🚀 -> RegisterCardComponent -> email', email);
-    console.log('🚀 -> RegisterCardComponent -> password', password);
+  console.log('🚀 -> RegisterCardComponent -> onSubmit -> submit pressed');
 
     const loading = await this.loadingController.create({
       message: 'Cadastrando usuário',
@@ -71,32 +75,14 @@ export class RegisterCardComponent implements OnInit {
       loading.dismiss();
     } catch (error) {
       loading.dismiss();
+      const t = await toastController.create({
+        message: 'Ocorreu um erro ao criar sua conta, por favor verifique os dados inseridos e tente novamente',
+        duration: 4000,
+        color: 'danger'
+      });
+      t.present();
       throw error;
     }
-  }
-
-  checkEmail(control: FormControl) {
-    if (control) {
-      const value: string = control.value;
-      const re =
-        // eslint-disable-next-line max-len
-        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      if (!re.test(String(value))) {
-        return { email: 'true' };
-      }
-    }
-    return null;
-  }
-
-  checkConfirmPassword(confirmPasswordControl: FormControl) {
-    if (!!confirmPasswordControl && !!this.registerForm) {
-      const password: string = this.registerForm.get('password') ? this.registerForm.get('password').value : '';
-      const confirmPassword: string = confirmPasswordControl.value;
-      if (password === confirmPassword) {
-        return { confirmPassword: 'true'};
-      }
-    }
-    return null;
   }
 
 }

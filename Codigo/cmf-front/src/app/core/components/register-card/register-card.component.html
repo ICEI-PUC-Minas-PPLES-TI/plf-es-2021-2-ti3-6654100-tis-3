@@ -1,23 +1,33 @@
-<ion-card>
-  <ion-card-title class="register-title">Cadastro</ion-card-title>
-  <ion-card-content class="register-card">
+<ion-card class="register-card">
+  <ion-card-title class="register-card-title">Cadastro</ion-card-title>
+  <ion-card-content class="register-card-content">
     <ion-grid>
       <ion-row size="12" class="form">
-        <ion-col sizeXs="10" sizeSm="8" sizeMd="6">
+        <ion-col sizeXs="12" sizeSm="8" sizeMd="6" sizeLg="4">
           <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <ion-item class="ipt-field">
-              <label for="ipt-nome">Nome <ion-text color="danger">*</ion-text></label>
-              <input required formControlName="name" type="text" name="nome" (value)="(newUser.name)" />
+              <label *ngIf="!isMobile" for="ipt-nome">Nome <ion-text color="danger">*</ion-text></label>
+              <input required formControlName="name" [placeholder]="isMobile ? 'Nome' : ''" type="text" name="nome" (value)="(newUser.name)" />
+            </ion-item>
+            <ion-item *ngIf="registerForm.get('name').invalid && registerForm.get('name').touched" lines="none">
+              <ion-text color="danger" class="form-error">
+                Por favor insira um nome válido.
+              </ion-text>
             </ion-item>
   
             <ion-item class="ipt-field">
-              <label for="ipt-funcao">Função <ion-text color="danger">*</ion-text></label>
-              <input required formControlName="role" type="text" name="funcao" (value)="(newUser.role)" />
+              <label *ngIf="!isMobile" for="ipt-funcao">Função <ion-text color="danger">*</ion-text></label>
+              <input required formControlName="role" [placeholder]="isMobile ? 'Função' : ''" type="text" name="funcao" (value)="(newUser.role)" />
+            </ion-item>
+            <ion-item *ngIf="registerForm.get('role').invalid && registerForm.get('role').touched" lines="none">
+              <ion-text color="danger" class="form-error">
+                Por favor insira uma função válida.
+              </ion-text>
             </ion-item>
   
             <ion-item class="ipt-field">
-              <label>E-Mail <ion-text color="danger">*</ion-text></label>
-              <input required formControlName="email" type="text">
+              <label *ngIf="!isMobile">E-Mail <ion-text color="danger">*</ion-text></label>
+              <input required formControlName="email" [placeholder]="isMobile ? 'E-mail' : ''" type="text">
             </ion-item>
             <ion-item *ngIf="registerForm.get('email').invalid && registerForm.get('email').touched" lines="none">
               <ion-text color="danger" class="form-error">
@@ -26,27 +36,32 @@
             </ion-item>
   
             <ion-item class="ipt-field">
-              <label>Senha <ion-text color="danger">*</ion-text></label>
-              <input required formControlName="password" type="password">
+              <label *ngIf="!isMobile">Senha <ion-text color="danger">*</ion-text></label>
+              <input required formControlName="password" [placeholder]="isMobile ? 'Senha' : ''" type="password">
             </ion-item>
             <ion-item *ngIf="registerForm.get('password').invalid && registerForm.get('password').touched" lines="none">
               <ion-text color="danger" class="form-error">
-                Por favor insira uma senha válida.
+                Por favor insira uma senha válida com no mínimo 6 caracteres.
               </ion-text>
             </ion-item>
   
             <ion-item class="ipt-field">
-              <label for="ipt-confirmar-senha">Confirmar senha <ion-text color="danger">*</ion-text></label>
-              <input type="password" formControlName="confirmPassword" name="confirmar-senha" />
+              <label *ngIf="!isMobile" for="ipt-confirmar-senha">Confirmar senha <ion-text color="danger">*</ion-text></label>
+              <input type="password" formControlName="confirmPassword" [placeholder]="isMobile ? 'Confirmar senha' : ''" name="confirmar-senha" />
             </ion-item>
             <ion-item *ngIf="registerForm.get('confirmPassword').invalid && registerForm.get('confirmPassword').touched" lines="none">
+              <ion-text color="danger" class="form-error">
+                Por favor insira uma senha válida com no mínimo 6 caracteres.
+              </ion-text>
+            </ion-item>
+            <ion-item *ngIf="registerForm.get('confirmPassword').value !== registerForm.get('password').value && registerForm.get('confirmPassword').touched" lines="none">
               <ion-text color="danger" class="form-error">
                 As senhas não coincidem.
               </ion-text>
             </ion-item>
   
             <div class="btn-controls">
-              <ion-button class="btn-form" color="light" routerLink="/">Cancelar</ion-button>
+              <ion-button *ngIf="!isMobile" class="btn-form" color="light" routerLink="/">Cancelar</ion-button>
               <ion-button class="btn-form" block color="primary" type="submit" [disabled]="registerForm.invalid">
                 Cadastrar
               </ion-button>
