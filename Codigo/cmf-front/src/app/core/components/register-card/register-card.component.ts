@@ -73,6 +73,12 @@ export class RegisterCardComponent implements OnInit {
 
       await this.userService.createUser(this.newUser);
       loading.dismiss();
+      const t = await toastController.create({
+        message: 'Conta criada com sucesso!',
+        duration: 4000,
+        color: 'success'
+      });
+      t.present();
     } catch (error) {
       loading.dismiss();
       const t = await toastController.create({

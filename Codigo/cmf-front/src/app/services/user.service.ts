@@ -13,13 +13,15 @@ export class UserService {
   ) {}
 
   async createUser(user: User) {
-    console.log('🚀 -> UserService -> createUser -> user', user);
-
     const url = `${environment.BASE_URL}/usuario/cadastrar`;
-    const body = user;
-    const headers = new HttpHeaders({
-      Accept: '*/*'
-    });
+    const body = {
+      email: user.email,
+      nome: user.name,
+      senha: user.password
+    };
+
+    const headers = new HttpHeaders();
+
     try {
       const response = await this.http
       .post<any>(url, body, { headers })
