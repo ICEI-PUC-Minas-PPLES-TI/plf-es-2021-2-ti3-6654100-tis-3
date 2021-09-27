@@ -1,10 +1,28 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
-
+const routes: Routes = [
+  // {
+  //   path: '',
+  //   loadChildren: () =>
+  //     import('./tabs/tabs.module').then((m) => m.TabsPageModule),
+  // },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./pages/external-area/external-area.module').then(
+        (m) => m.ExternalAreaPageModule
+      ),
+  },
+  {
+    path: 'external-area',
+    loadChildren: () => import('./pages/external-area/external-area.module').then( m => m.ExternalAreaPageModule)
+  },
+];
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
