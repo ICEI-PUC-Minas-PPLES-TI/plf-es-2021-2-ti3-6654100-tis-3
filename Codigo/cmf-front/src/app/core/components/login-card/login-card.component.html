@@ -1,4 +1,43 @@
-<p>login-card works!</p>
+<ion-card class="login-card">
+  <ion-card-title class="login-card-title">Login</ion-card-title>
+  <ion-card-content class="login-card-content">
+    <ion-grid>
+      <ion-row size="12" class="form">
+        <ion-col sizeXs="12" sizeSm="8" sizeMd="6" sizeLg="4">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <ion-item class="ipt-field">
+              <label *ngIf="!isMobile">E-Mail <ion-text color="danger">*</ion-text></label>
+              <input required formControlName="email" [placeholder]="isMobile ? 'E-mail' : ''" type="text">
+            </ion-item>
+            <ion-item *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched" lines="none">
+              <ion-text color="danger" class="form-error">
+                Por favor insira um endereço de email válido.
+              </ion-text>
+            </ion-item>
+
+            <ion-item class="ipt-field">
+              <label *ngIf="!isMobile">Senha <ion-text color="danger">*</ion-text></label>
+              <input required formControlName="password" [placeholder]="isMobile ? 'Senha' : ''" type="password">
+            </ion-item>
+            <ion-item *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched" lines="none">
+              <ion-text color="danger" class="form-error">
+                Por favor insira uma senha válida com no mínimo 6 caracteres.
+              </ion-text>
+            </ion-item>
+  
+            <div class="btn-controls">
+              <ion-button class="btn-form" block color="primary" type="submit" [disabled]="loginForm.invalid">
+                Login
+              </ion-button>
+            </div>
+          </form>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+
+
 <ion-button (click)="navigateToRegister()" expand="block" fill="clear" shape="round">
-  Go to Register form
+  Cadastrar
 </ion-button>
