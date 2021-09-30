@@ -42,14 +42,18 @@ export class UserService {
     };
     try {
       const response = await this.http
-        .post<boolean>(url, { headers })
+        .get<boolean>(url, { headers })
         .toPromise();
 
       console.log('🚀 -> UserService -> login -> response', response);
       return response;
     } catch (error) {
-      console.error('ERROR on user-service:', error);
-      throw error;
+      if (error.status === 404) {
+        return false;
+      } else {
+        console.error('ERROR on user-service:', error);
+        throw error;
+      }
     }
   }
 }
