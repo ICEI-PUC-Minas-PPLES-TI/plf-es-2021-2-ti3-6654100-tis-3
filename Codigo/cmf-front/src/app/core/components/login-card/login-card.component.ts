@@ -26,7 +26,6 @@ export class LoginCardComponent implements OnInit {
   );
 
   isMobile: boolean;
-  image = 'https://source.unsplash.com/random/540x540/';
 
   constructor(
     private router: Router,
