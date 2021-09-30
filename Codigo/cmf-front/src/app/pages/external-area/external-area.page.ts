@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-external-area',
@@ -8,16 +7,10 @@ import { Router } from '@angular/router';
 })
 export class ExternalAreaPage implements OnInit {
 
-  isOnRoot = true;
 
-  constructor(
-    private router: Router,
-  ) { }
+  constructor() { }
 
-  ngOnInit() { }
-
-  onCLick() {
-    this.isOnRoot = this.router.url === '/external/login';
+  ngOnInit() {
   }
 
 }

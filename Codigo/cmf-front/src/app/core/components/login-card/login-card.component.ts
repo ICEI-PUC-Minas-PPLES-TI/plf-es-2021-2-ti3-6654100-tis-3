@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TopbarService } from 'src/app/services/topbar.service';
 
 @Component({
   selector: 'app-login-card',
@@ -10,9 +11,12 @@ export class LoginCardComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private topbarService: TopbarService,
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.topbarService.configBackButton(false);
+  }
 
   navigateToRegister() {
     this.router.navigate(['/external/register']);
