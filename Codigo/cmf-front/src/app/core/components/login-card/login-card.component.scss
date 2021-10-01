@@ -1,11 +1,8 @@
 .login {
   display: flex;
   justify-content: space-around;
+
   &-card {
-    width: 100%;
-    @media screen and (min-width: 768px) {
-      width: 50%
-    }
     &-title {
       font-size: 48px;
       text-align: center;
