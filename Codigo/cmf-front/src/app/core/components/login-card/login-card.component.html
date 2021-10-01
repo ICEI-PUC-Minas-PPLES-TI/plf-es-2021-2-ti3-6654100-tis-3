@@ -1,0 +1,48 @@
+<div class="login fit-content-with-topbar">
+  <ion-col size="12" sizeMd="6">
+    <ion-card class="login-card">
+      <ion-card-title class="login-card-title">Login</ion-card-title>
+      <ion-card-content class="login-card-content">
+        <ion-grid>
+          <ion-row class="form">
+            <ion-col size="12">
+              <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <ion-item class="ipt-field">
+                  <label *ngIf="!isMobile">E-Mail <ion-text color="danger">*</ion-text></label>
+                  <input required formControlName="email" [placeholder]="isMobile ? 'E-mail' : ''" type="text">
+                </ion-item>
+                <ion-item *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched" lines="none">
+                  <ion-text color="danger" class="form-error">
+                    Por favor insira um endereço de email válido.
+                  </ion-text>
+                </ion-item>
+    
+                <ion-item class="ipt-field">
+                  <label *ngIf="!isMobile">Senha <ion-text color="danger">*</ion-text></label>
+                  <input required formControlName="password" [placeholder]="isMobile ? 'Senha' : ''" type="password">
+                </ion-item>
+                <ion-item *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched" lines="none">
+                  <ion-text color="danger" class="form-error">
+                    Por favor insira uma senha válida com no mínimo 6 caracteres.
+                  </ion-text>
+                </ion-item>
+      
+                <div class="btn-controls">
+                  <ion-button class="btn-form" block color="primary" type="submit" [disabled]="loginForm.invalid">
+                    Entrar
+                  </ion-button>
+                </div>
+              </form>
+              <ion-button class="btn-register" (click)="navigateToRegister()" expand="block">
+                Cadastrar
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ion-col>
+  <ion-col size="6" *ngIf="!isMobile" class="login-banner">
+    <img class="round-image" src="../../../../assets/img/cmf-logo.png" alt="cmf-logo">
+  </ion-col>
+</div>

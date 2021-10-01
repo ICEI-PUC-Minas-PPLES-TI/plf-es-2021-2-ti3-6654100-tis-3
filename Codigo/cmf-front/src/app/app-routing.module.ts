@@ -14,10 +14,6 @@ const routes: Routes = [
         (m) => m.ExternalAreaPageModule
       ),
   },
-  {
-    path: 'external-area',
-    loadChildren: () => import('./pages/external-area/external-area.module').then( m => m.ExternalAreaPageModule)
-  },
 ];
 @NgModule({
   imports: [

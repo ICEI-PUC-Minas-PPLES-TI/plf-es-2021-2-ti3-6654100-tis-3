@@ -37,3 +37,12 @@ textarea:focus,
 button:focus {
     outline: none;
 }
+
+.fit-content-with-topbar {
+    height: 100%;
+}
+
+.round-image {
+    border-radius: 50%;
+    object-fit: cover;
+}

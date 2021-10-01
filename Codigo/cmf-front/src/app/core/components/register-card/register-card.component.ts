@@ -1,7 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 import { toastController } from '@ionic/core';
+import { TopbarService } from 'src/app/services/topbar.service';
 import { UserService } from 'src/app/services/user.service';
 import { DEFAULT_USER, User } from 'src/app/types/User';
 import { checkConfirmPassword, checkEmail } from '../../shared/custom-validators/custom-validators-sign-up-form';
@@ -42,7 +43,7 @@ export class RegisterCardComponent implements OnInit {
   constructor(
     private userService: UserService,
     private loadingController: LoadingController,
-    private alertController: AlertController,
+    private topbarService: TopbarService,
   ) { }
 
   @HostListener('window:resize')
@@ -52,6 +53,7 @@ export class RegisterCardComponent implements OnInit {
 
   ngOnInit() {
     this.isMobile = window.innerWidth < 767 ? true : false;
+    this.topbarService.configBackButton(true);
   }
 
   async onSubmit() {

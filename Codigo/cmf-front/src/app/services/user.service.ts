@@ -33,4 +33,27 @@ export class UserService {
       throw error;
     }
   }
+
+  async login(email: string, password: string) {
+    const url = `${environment.BASE_URL}/usuario/login`;
+    const headers = {
+      email,
+      senha: password
+    };
+    try {
+      const response = await this.http
+        .get<boolean>(url, { headers })
+        .toPromise();
+
+      console.log('🚀 -> UserService -> login -> response', response);
+      return response;
+    } catch (error) {
+      if (error.status === 404) {
+        return false;
+      } else {
+        console.error('ERROR on user-service:', error);
+        throw error;
+      }
+    }
+  }
 }

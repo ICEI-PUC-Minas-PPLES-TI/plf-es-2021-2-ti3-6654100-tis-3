@@ -1,8 +1,8 @@
-<ion-card class="register-card">
+<ion-card class="register-card fit-content-with-topbar">
   <ion-card-title class="register-card-title">Cadastro</ion-card-title>
   <ion-card-content class="register-card-content">
     <ion-grid>
-      <ion-row size="12" class="form">
+      <ion-row class="form">
         <ion-col sizeXs="12" sizeSm="8" sizeMd="6" sizeLg="4">
           <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <ion-item class="ipt-field">
@@ -61,14 +61,11 @@
             </ion-item>
   
             <div class="btn-controls">
-              <ion-button *ngIf="!isMobile" class="btn-form" color="light" routerLink="/">Cancelar</ion-button>
               <ion-button class="btn-form" block color="primary" type="submit" [disabled]="registerForm.invalid">
                 Cadastrar
               </ion-button>
             </div>
           </form>
-          <!-- <form action="#" method="post">
-          </form> -->
         </ion-col>
       </ion-row>
     </ion-grid>
