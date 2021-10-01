@@ -40,20 +40,22 @@ export class UserService {
       email,
       senha: password
     };
+    let response: boolean;
     try {
-      const response = await this.http
+      response = await this.http
         .get<boolean>(url, { headers })
         .toPromise();
 
       console.log('🚀 -> UserService -> login -> response', response);
-      return response;
     } catch (error) {
       if (error.status === 404) {
-        return false;
+        response = false;
       } else {
         console.error('ERROR on user-service:', error);
         throw error;
       }
     }
+    window.localStorage.setItem('userLogged', response.toString());
+    return response;
   }
 }

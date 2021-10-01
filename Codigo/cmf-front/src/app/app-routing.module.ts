@@ -14,6 +14,10 @@ const routes: Routes = [
         (m) => m.ExternalAreaPageModule
       ),
   },
+  {
+    path: 'bills',
+    loadChildren: () => import('./pages/bills/bills.module').then( m => m.BillsPageModule)
+  },
 ];
 @NgModule({
   imports: [

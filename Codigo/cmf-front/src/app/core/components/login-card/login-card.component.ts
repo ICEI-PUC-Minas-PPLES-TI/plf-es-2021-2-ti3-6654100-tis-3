@@ -65,6 +65,7 @@ export class LoginCardComponent implements OnInit {
       const response = await this.userService.login(email, password);
       if (response) {
         this.showToast('Usuário autenticado com sucesso!', 'success');
+        this.router.navigate(['/bills']);
       } else {
         this.showToast('Email ou senha incorretos, por favor tente novamente.', 'danger');
       }
