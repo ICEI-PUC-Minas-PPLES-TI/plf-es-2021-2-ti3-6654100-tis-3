@@ -1,9 +1,80 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>bills</ion-title>
-  </ion-toolbar>
+  <app-topbar topbarTitle="Gestão de contas"></app-topbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-card>
+    <ion-list>
+      <ion-item class="accordion-item" (click)="toggleTransactionModal()">
+        <ion-icon slot="start" name="add"></ion-icon>
+        <ion-label>Adicionar nova movimentação</ion-label>
+        <div class="content hidden">
+          <p>teste</p>
+        </div>
+      </ion-item>
+      <ion-item id="fees" class="accordion-item" (click)="toggleAccordion('fees')">
+        <ion-icon slot="start" name="chevron-down-outline"></ion-icon>
+        <ion-label>Ver meus gastos</ion-label>
+        <br>
+        <ion-item class="content hidden">
+          <p>teste</p>
+        </ion-item>
+      </ion-item>
+      <ion-item id="earnings" class="accordion-item" (click)="toggleAccordion('earnings')">
+        <ion-icon slot="start" name="chevron-down-outline"></ion-icon>
+        <ion-label>Ver meus lucros</ion-label>
+        <br>
+        <ion-item class="content hidden">
+          <p>teste</p>
+        </ion-item>
+      </ion-item>
+    </ion-list>
+  </ion-card>
 </ion-content>
+
+<div id="add-transaction" class="hidden" (click)="toggleTransactionModal()">
+  <ion-card class="add-transaction-card" (click)="preventDefault($event)">
+    <ion-card-title>
+      <ion-label>Adicionar Movimentação</ion-label>
+    </ion-card-title>
+    <ion-card-content>
+      <form [formGroup]="addTransaction" (ngSubmit)="onAddTransaction()">
+        <ion-item>
+          <ion-label>Tipo de movimentação <ion-text color="danger">*</ion-text></ion-label>
+          <ion-select formControlName="transactionType" multiple="false" placeholder="Selecione...">
+            <ion-select-option value="entrada">Entrada</ion-select-option>
+            <ion-select-option value="saida">Saída</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Valor da movimentação <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required formControlName="transactionValue" type="number"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Produto relacionado? <ion-text color="danger">*</ion-text></ion-label>
+          <ion-checkbox [value]="false" required formControlName="relatedProduct"></ion-checkbox>
+        </ion-item>
+
+        <div class="product-info" *ngIf="addTransaction.get('relatedProduct').value">
+          <ion-item>
+            <ion-label position="floating">Nome do produto</ion-label>
+            <ion-input formControlName="productName" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Quantidade</ion-label>
+            <ion-input formControlName="productQuantity" type="number"></ion-input>
+          </ion-item>
+        </div>
+
+        <ion-button block color="secondary" (click)="toggleTransactionModal()">
+          Cancelar
+        </ion-button>
+        <ion-button block color="primary" type="submit" (click)="onAddTransaction()" [disabled]="addTransaction.invalid">
+          Confirmar
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</div>

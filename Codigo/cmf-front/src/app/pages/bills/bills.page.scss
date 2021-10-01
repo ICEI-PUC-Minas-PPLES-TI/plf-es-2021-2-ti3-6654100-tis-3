@@ -1,0 +1,21 @@
+.accordion-item {
+    cursor: pointer;
+    height: 68px;
+}
+
+.hidden {
+    display: none;
+}
+
+#add-transaction {
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    opacity: 0.5;
+
+    .add-transaction-card {
+        background-color: var(--ion-color-primary);
+        color: black !important;
+        padding: 16px;
+    }
+}
