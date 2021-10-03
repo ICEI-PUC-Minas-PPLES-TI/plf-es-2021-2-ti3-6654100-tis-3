@@ -17,7 +17,7 @@ export class BillsPage implements OnInit {
       transactionValue: new FormControl(null, [
         Validators.required,
       ]),
-      relatedProduct: new FormControl(),
+      relatedProduct: new FormControl(false),
       productName: new FormControl(),
       productQuantity: new FormControl()
     },
@@ -42,6 +42,9 @@ export class BillsPage implements OnInit {
 
   toggleTransactionModal() {
     this.transactionModal.classList.toggle('hidden');
+    if (this.transactionModal.classList.contains('hidden')) {
+      this.addTransaction.reset();
+    }
   }
 
   toggleAccordion(id: string) {
@@ -53,7 +56,7 @@ export class BillsPage implements OnInit {
 
   onAddTransaction() {
     console.log('ainda preciso fazer isso kkkkkkrying');
-    console.log('🚀 -> BillsPage -> addTransaction', this.addTransaction);
+    console.log('🚀 -> BillsPage -> addTransaction', this.addTransaction.value);
   }
 
   preventDefault($event) {
