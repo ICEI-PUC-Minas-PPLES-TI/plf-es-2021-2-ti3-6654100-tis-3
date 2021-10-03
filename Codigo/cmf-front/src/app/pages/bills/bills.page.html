@@ -39,41 +39,48 @@
     </ion-card-title>
     <ion-card-content>
       <form [formGroup]="addTransaction" (ngSubmit)="onAddTransaction()">
-        <ion-item>
-          <ion-label>Tipo de movimentação <ion-text color="danger">*</ion-text></ion-label>
-          <ion-select formControlName="transactionType" multiple="false" placeholder="Selecione...">
-            <ion-select-option value="entrada">Entrada</ion-select-option>
-            <ion-select-option value="saida">Saída</ion-select-option>
-          </ion-select>
-        </ion-item>
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col size="6">
+              <ion-label>Tipo de movimentação <ion-text color="danger">*</ion-text></ion-label>
+              <ion-select formControlName="transactionType" multiple="false" placeholder="Selecione...">
+                <ion-select-option value="entrada">Entrada</ion-select-option>
+                <ion-select-option value="saida">Saída</ion-select-option>
+              </ion-select>
+            </ion-col>
+            <ion-col size="6">
+              <ion-label position="floating">Valor da movimentação <ion-text color="danger">*</ion-text></ion-label>
+              <ion-input required formControlName="transactionValue" placeholder="R$" type="number"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <ion-label position="floating">Produto relacionado? <ion-text color="danger">*</ion-text></ion-label>
+              <ion-checkbox [value]="false" formControlName="relatedProduct"></ion-checkbox>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="addTransaction.get('relatedProduct').value">
+            <ion-col size="6">
+              <ion-label position="floating">Nome do produto</ion-label>
+              <ion-input formControlName="productName" type="text"></ion-input>
+            </ion-col>
 
-        <ion-item>
-          <ion-label position="floating">Valor da movimentação <ion-text color="danger">*</ion-text></ion-label>
-          <ion-input required formControlName="transactionValue" type="number"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">Produto relacionado? <ion-text color="danger">*</ion-text></ion-label>
-          <ion-checkbox [value]="false" required formControlName="relatedProduct"></ion-checkbox>
-        </ion-item>
-
-        <div class="product-info" *ngIf="addTransaction.get('relatedProduct').value">
-          <ion-item>
-            <ion-label position="floating">Nome do produto</ion-label>
-            <ion-input formControlName="productName" type="text"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="floating">Quantidade</ion-label>
-            <ion-input formControlName="productQuantity" type="number"></ion-input>
-          </ion-item>
-        </div>
-
-        <ion-button block color="secondary" (click)="toggleTransactionModal()">
-          Cancelar
-        </ion-button>
-        <ion-button block color="primary" type="submit" (click)="onAddTransaction()" [disabled]="addTransaction.invalid">
-          Confirmar
-        </ion-button>
+            <ion-col size="6">  
+              <ion-label position="floating">Quantidade</ion-label>
+              <ion-input formControlName="productQuantity" type="number"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <ion-button block color="light" (click)="toggleTransactionModal()">
+                Cancelar
+              </ion-button>
+              <ion-button block color="secondary" type="submit" (click)="onAddTransaction()" [disabled]="addTransaction.invalid">
+                Confirmar
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </form>
     </ion-card-content>
   </ion-card>
