@@ -1,10 +1,37 @@
 .accordion-item {
+    display: flex;
+    align-items: center;
     cursor: pointer;
-    height: 68px;
+
+    @media screen and (min-width: 768px) {
+        padding: 16px;
+    
+        height: 128px;
+        font-size: 24px;
+        font-weight: 600;
+    }
 }
 
 .hidden {
     display: none;
+}
+
+.transaction-input {
+    input {
+        padding: 16px;
+    }
+    
+    color: var(--ion-color-light-contrast);
+    background-color: var(--ion-color-light);
+    border-radius: 8px;
+}
+
+ion-checkbox {
+    margin-left: 8px;
+
+    &:checked {
+        background-color: var(--ion-color-secondary);
+    }
 }
 
 #add-transaction {

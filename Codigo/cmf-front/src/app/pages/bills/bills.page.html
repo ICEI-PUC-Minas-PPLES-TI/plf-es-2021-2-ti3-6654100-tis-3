@@ -43,31 +43,31 @@
           <ion-row>
             <ion-col size="6">
               <ion-label>Tipo de movimentação <ion-text color="danger">*</ion-text></ion-label>
-              <ion-select formControlName="transactionType" multiple="false" placeholder="Selecione...">
-                <ion-select-option value="entrada">Entrada</ion-select-option>
-                <ion-select-option value="saida">Saída</ion-select-option>
+              <ion-select class="transaction-input" formControlName="transactionType" multiple="false" placeholder="Selecione...">
+                <ion-select-option value="ENTRADA">Entrada</ion-select-option>
+                <ion-select-option value="SAIDA">Saída</ion-select-option>
               </ion-select>
             </ion-col>
             <ion-col size="6">
               <ion-label position="floating">Valor da movimentação <ion-text color="danger">*</ion-text></ion-label>
-              <ion-input required formControlName="transactionValue" placeholder="R$" type="number"></ion-input>
+              <ion-input class="transaction-input" required formControlName="transactionValue" placeholder="R$" type="number"></ion-input>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="6">
               <ion-label position="floating">Produto relacionado? <ion-text color="danger">*</ion-text></ion-label>
-              <ion-checkbox [value]="false" formControlName="relatedProduct"></ion-checkbox>
+              <ion-checkbox class="transaction-input" [value]="false" formControlName="relatedProduct"></ion-checkbox>
             </ion-col>
           </ion-row>
           <ion-row *ngIf="addTransaction.get('relatedProduct').value">
             <ion-col size="6">
               <ion-label position="floating">Nome do produto</ion-label>
-              <ion-input formControlName="productName" type="text"></ion-input>
+              <ion-input class="transaction-input" formControlName="productName" type="text"></ion-input>
             </ion-col>
 
             <ion-col size="6">  
               <ion-label position="floating">Quantidade</ion-label>
-              <ion-input formControlName="productQuantity" type="number"></ion-input>
+              <ion-input class="transaction-input" formControlName="productQuantity" type="number"></ion-input>
             </ion-col>
           </ion-row>
           <ion-row>
