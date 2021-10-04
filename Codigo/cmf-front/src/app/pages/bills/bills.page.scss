@@ -12,11 +12,30 @@
     }
 }
 
-.hidden {
-    display: none;
+#fees-content,
+#earnings-content {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    .fees-item {
+        width: 100%;
+        padding: 16px;
+
+        @media screen and (min-width: 768px) {
+            width: 50%;
+        }
+        .light-input {
+            padding: 16px;
+        }
+    }
 }
 
-.transaction-input {
+
+.hidden {
+    display: none !important;
+}
+
+.light-input {
     input {
         padding: 16px;
     }

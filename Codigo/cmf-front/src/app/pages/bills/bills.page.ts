@@ -34,6 +34,13 @@ export class BillsPage implements OnInit {
 
   availableProducts: ProductResponse[];
 
+  feesMapping = {
+    workers: 1,
+    taxes: 2,
+    products: 3,
+    total: 6
+  };
+
   constructor(
     private router: Router,
     private loadingController: LoadingController,
@@ -65,9 +72,8 @@ export class BillsPage implements OnInit {
 
   toggleAccordion(id: string) {
     console.log('abre aí', id);
-    const element = document.getElementById(id);
-    const content = Array.from(element.children).filter(e => e.classList.contains('content'));
-    content[0].classList.toggle('hidden');
+    const content = document.getElementById(id + '-content');
+    content.classList.toggle('hidden');
   }
 
   async onAddTransaction() {
