@@ -52,7 +52,7 @@ export class BillsPage implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.transactionModal = document.getElementById('add-transaction')
+    this.transactionModal = document.getElementById('add-transaction');
     this.transactionModal1 = document.getElementById('add-transaction1');
     this.checkUserLogged();
 
