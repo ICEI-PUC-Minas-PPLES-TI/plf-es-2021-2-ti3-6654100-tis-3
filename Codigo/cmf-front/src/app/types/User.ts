@@ -5,6 +5,10 @@ export interface User {
   role: string;
 }
 
+export interface UserResponse extends User {
+  idUsuario: number;
+}
+
 export const DEFAULT_USER: User = {
   name: '',
   email: '',
