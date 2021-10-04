@@ -65,7 +65,7 @@
             <ion-col size="6">
               <ion-label position="floating">Nome do produto</ion-label>
               <ion-select class="transaction-input" formControlName="productName" multiple="false" placeholder="Selecione...">
-                  <ion-select-option *ngFor="let product of availableProducts" [value]="product">{{product}}</ion-select-option>
+                  <ion-select-option *ngFor="let product of availableProducts" [value]="product.idProduto">{{product.nome}}</ion-select-option>
               </ion-select>
             </ion-col>
 
@@ -74,7 +74,7 @@
               <ion-input class="transaction-input" formControlName="productQuantity" type="number"></ion-input>
             </ion-col>
           </ion-row>
-          
+
           <ion-row>
             <ion-col size="12">
               <ion-button block color="light" (click)="toggleTransactionModal()">

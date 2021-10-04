@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoadingController, ToastController } from '@ionic/angular';
+import { ProductService } from 'src/app/services/product.service';
 import { TransactionService } from 'src/app/services/transaction.service';
 import { UserService } from 'src/app/services/user.service';
+import { ProductResponse } from 'src/app/types/Product';
 import { DEFAULT_TRANSACTION, Transaction } from 'src/app/types/Transaction';
 
 @Component({
@@ -30,7 +32,7 @@ export class BillsPage implements OnInit {
   transactionModal: HTMLElement;
   newTransaction: Transaction = DEFAULT_TRANSACTION;
 
-  availableProducts = [];
+  availableProducts: ProductResponse[];
 
   constructor(
     private router: Router,
@@ -38,13 +40,14 @@ export class BillsPage implements OnInit {
     private toastController: ToastController,
     private transactionService: TransactionService,
     private userService: UserService,
+    private productService: ProductService,
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.transactionModal = document.getElementById('add-transaction');
     this.checkUserLogged();
 
-    this.availableProducts = ['a', 'b', 'c'];
+    this.availableProducts = await this.productService.getAvailableProducts();
   }
 
   checkUserLogged() {
@@ -77,8 +80,10 @@ export class BillsPage implements OnInit {
       this.newTransaction = {
         userId: (await this.userService.getUserByEmail('johndoe@ceo.com')).idUsuario,
         order: this.addTransaction.get('transactionType').value,
-        type: this.addTransaction.get('relatedProduct').value ? 'PRODUTO' : 'CONTAS',
         value: this.addTransaction.get('transactionValue').value,
+        type: this.addTransaction.get('relatedProduct').value ? 'PRODUTO' : 'CONTAS',
+        productId: this.addTransaction.get('relatedProduct').value ? this.addTransaction.get('productName').value : null,
+        productQty: this.addTransaction.get('relatedProduct').value ? this.addTransaction.get('productQuantity').value : null,
       };
 
       const response = await this.transactionService.createTransaction(this.newTransaction);
