@@ -30,6 +30,8 @@ export class BillsPage implements OnInit {
   transactionModal: HTMLElement;
   newTransaction: Transaction = DEFAULT_TRANSACTION;
 
+  availableProducts = [];
+
   constructor(
     private router: Router,
     private loadingController: LoadingController,
@@ -41,6 +43,8 @@ export class BillsPage implements OnInit {
   ngOnInit() {
     this.transactionModal = document.getElementById('add-transaction');
     this.checkUserLogged();
+
+    this.availableProducts = ['a', 'b', 'c'];
   }
 
   checkUserLogged() {
