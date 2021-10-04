@@ -10,9 +10,14 @@
         <ion-label>Adicionar nova movimentação</ion-label>
       </ion-item>
 
+      <ion-item class="accordion-item" (click)="toggleTransactionModal1()">
+        <ion-icon slot="start" name="add"></ion-icon>
+        <ion-label>Adicionar nova movimentação</ion-label>
+      </ion-item>
+
       <ion-item id="fees" class="accordion-item" (click)="toggleAccordion('fees')">
         <ion-icon slot="start" name="chevron-down-outline"></ion-icon>
-        <ion-label>Ver meus gastos</ion-label> 
+        <ion-label>Ver meus gastos</ion-label>
       </ion-item>
       <ion-item>
         <div id="fees-content" class="hidden">
@@ -20,24 +25,24 @@
             <ion-label>Gastos com funcionários</ion-label>
             <ion-label class="light-input">{{feesMapping.workers}}</ion-label>
           </div>
-  
+
           <div class="fees-item">
             <ion-label>Gastos com impostos</ion-label>
             <ion-label class="light-input">{{feesMapping.taxes}}</ion-label>
           </div>
-  
+
           <div class="fees-item">
             <ion-label>Gastos com produtos</ion-label>
             <ion-label class="light-input">{{feesMapping.products}}</ion-label>
           </div>
-  
+
           <div class="fees-item">
             <ion-label>Gastos totais</ion-label>
             <ion-label class="light-input">{{feesMapping.total}}</ion-label>
           </div>
         </div>
       </ion-item>
-      
+
       <ion-item id="earnings" class="accordion-item" (click)="toggleAccordion('earnings')">
         <ion-icon slot="start" name="chevron-down-outline"></ion-icon>
         <ion-label>Ver meus lucros</ion-label>
@@ -93,7 +98,7 @@
               </ion-select>
             </ion-col>
 
-            <ion-col size="6">  
+            <ion-col size="6">
               <ion-label position="floating">Quantidade</ion-label>
               <ion-input class="light-input" formControlName="productQuantity" type="number"></ion-input>
             </ion-col>
@@ -107,6 +112,31 @@
               <ion-button block color="secondary" type="submit" (click)="onAddTransaction()" [disabled]="addTransaction.invalid">
                 Confirmar
               </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</div>
+
+<div id="add-transaction1" class="hidden" (click)="toggleTransactionModal1()">
+  <ion-card>
+    <ion-card-title>
+      <ion-label>
+        Registrar nova conta
+      </ion-label>
+    </ion-card-title>
+    <ion-card-content>
+      <form >
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col size="6">
+              <ion-label>Tipo da conta:</ion-label>
+              <ion-input class="light-input" required type="ion-text"></ion-input>
+            </ion-col>
+            <ion-col size="6">
+              <ion-label>Data de vencimento:</ion-label>
             </ion-col>
           </ion-row>
         </ion-grid>

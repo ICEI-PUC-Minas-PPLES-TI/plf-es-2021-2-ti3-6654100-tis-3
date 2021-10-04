@@ -30,6 +30,7 @@ export class BillsPage implements OnInit {
   );
 
   transactionModal: HTMLElement;
+  transactionModal1: HTMLElement;
   newTransaction: Transaction = DEFAULT_TRANSACTION;
 
   availableProducts: ProductResponse[];
@@ -51,7 +52,8 @@ export class BillsPage implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.transactionModal = document.getElementById('add-transaction');
+    this.transactionModal = document.getElementById('add-transaction')
+    this.transactionModal1 = document.getElementById('add-transaction1');
     this.checkUserLogged();
 
     this.availableProducts = await this.productService.getAvailableProducts();
@@ -69,6 +71,11 @@ export class BillsPage implements OnInit {
       this.addTransaction.reset();
     }
   }
+
+  toggleTransactionModal1() {
+    this.transactionModal1.classList.toggle('hidden');
+  }
+
 
   toggleAccordion(id: string) {
     console.log('abre aí', id);
