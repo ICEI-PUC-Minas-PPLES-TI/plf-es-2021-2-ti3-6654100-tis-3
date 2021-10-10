@@ -121,45 +121,59 @@
 </div>
 
 <div id="add-transaction1" class="hidden" (click)="toggleTransactionModal1()">
-  <ion-card>
+  <ion-card class="add-transaction-card" (click)="preventDefault($event)">
     <ion-card-title>
       <ion-label>
         Registrar nova conta
       </ion-label>
     </ion-card-title>
     <ion-card-content>
-      <form >
+      <form [formGroup]="">
         <ion-grid fixed>
           <ion-row>
             <ion-col size="6">
-              <ion-label>Descrição:</ion-label>
+              <ion-label position="floating">Descrição: <ion-text color="danger">*</ion-text></ion-label>
               <ion-input class="light-input" required type="ion-text"></ion-input>
             </ion-col>
             <ion-col size="6">
-              <ion-label>Data de vencimento da conta:</ion-label>
+              <ion-label position="floating">Data de vencimento da conta: <ion-text color="danger">*</ion-text></ion-label>
               <ion-input class="light-input" required type="date"></ion-input>
             </ion-col>
           </ion-row>
+
           <ion-row>
             <ion-col size="6">
-              <ion-label>Valor da conta:</ion-label>
+              <ion-label position="floating">Valor da conta: <ion-text color="danger">*</ion-text></ion-label>
               <ion-input class="light-input" placeholder="R$" type="number" required ></ion-input>
             </ion-col>
           </ion-row>
+
           <ion-row>
             <ion-col syze="10">
-              <ion-label>Receber notificação de conta prestes a vencer</ion-label>
+              <ion-label position="floating">Receber notificação de conta prestes a vencer</ion-label>
               <ion-checkbox class="light-input" [value]="false" ></ion-checkbox>
             </ion-col>
           </ion-row>
+
           <ion-row>
             <ion-col syze="6">
-              <ion-label>Lembrete(dias):</ion-label>
+              <ion-label position="floating">Lembrete(dias):</ion-label>
               <ion-input class="light-input" type="number"></ion-input>
             </ion-col>
             <ion-col syze="6">
-              <ion-label>Lembrete(horas):</ion-label>
+              <ion-label position="floating">Lembrete(horas):</ion-label>
               <ion-input class="light-input" type="number"></ion-input>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+              <ion-button block color="light" (click)="toggleTransactionModal1()">
+                Cancelar
+              </ion-button>
+              <ion-button block color="secondary" type="submit" (click)="onAddTransaction()" [disabled]="addTransaction.invalid">
+                Confirmar
+              </ion-button>
             </ion-col>
           </ion-row>
         </ion-grid>
