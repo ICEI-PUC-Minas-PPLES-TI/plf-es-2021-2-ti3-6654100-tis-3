@@ -1,0 +1,60 @@
+CREATE TABLE usuario (
+	id_usuario INT GENERATED ALWAYS AS IDENTITY,
+	email varchar(255) NULL,
+	nome varchar(255) NULL,
+	senha varchar(255) NULL,
+	CONSTRAINT fk_usuario PRIMARY KEY (id_usuario)
+);
+
+CREATE TABLE produto (
+	id_produto INT GENERATED ALWAYS AS IDENTITY,
+	nome varchar(255) NULL,
+	quantidade int4 NULL,
+	CONSTRAINT fk_produto PRIMARY KEY (id_produto)
+);
+
+CREATE TABLE categoria (
+	id_categoria INT GENERATED ALWAYS AS IDENTITY,
+	nome varchar(255) NULL,
+	ordem varchar(255) NULL,
+	CONSTRAINT fk_categoria PRIMARY KEY (id_categoria)
+);
+
+CREATE TABLE movimentacao (
+	id_movimentacao INT GENERATED ALWAYS AS IDENTITY,
+	ordem varchar(255) NULL,
+	tipo_movimentacao varchar(255) NULL,
+	valor numeric(19,2) NULL,
+	data_criacao date NULL,
+	id_produto int4 NULL,
+    id_usuario int4 NULL,
+    id_categoria int4 NULL,
+	PRIMARY KEY (id_movimentacao),
+	CONSTRAINT fk_movimentacao
+	FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
+	FOREIGN KEY (id_produto) REFERENCES produto(id_produto),
+	FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria)
+);
+
+CREATE TABLE conta(
+    id_conta INT GENERATED ALWAYS AS IDENTITY,
+    tipo_conta varchar(255) NULL,
+    data_vencimento date NULL,
+    valor_conta numeric(19,2) NULL,
+    receber_notif BOOLEAN NOT null,
+    id_usuario int4 NULL,
+    PRIMARY KEY (id_conta),
+	CONSTRAINT fk_conta
+	FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
+);
+
+CREATE TABLE notificacao (
+	id_notificacao INT GENERATED ALWAYS AS IDENTITY,
+	data_lembrete date NULL,
+    id_conta  int4 NULL,
+    id_usuario int4 NULL,
+	PRIMARY KEY (id_notificacao),
+	CONSTRAINT fk_notificacao
+	FOREIGN KEY (id_conta) REFERENCES conta(id_conta),
+	FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
+);
