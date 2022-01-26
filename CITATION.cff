@@ -1,0 +1,29 @@
+cff-version: 1.0.1
+message: Please cite this software using these metadata.
+title: CMF - Controle e Monitoramento Financeiro
+authors:
+  - family-names: Reis Dornela Ribeiro
+    given-names: Anna Laura 
+  - family-names: Cota Guimarães
+    given-names: André   
+  - family-names: Ferreira Santos
+    given-names: Guilherme Roberto  
+  - family-names: Mayrink de Jesus 
+    given-names: João Pedro 
+  - family-names: Viana de Oliveira
+    given-names: Vinicius Levi 
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Alonso Veloso
+    given-names: Eveline 
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Amaral Baroni De Carvalho
+    given-names: Juliana 
+keywords:
+  - Controle e Monitoramento
+  - Financeiro
+repository-code: https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2021-2-ti3-6654100-tis-3
+license: CC-BY-4.0
+version: 1.0.0
+date-released: 2021-12-22
